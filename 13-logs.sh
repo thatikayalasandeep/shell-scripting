@@ -7,6 +7,7 @@ Y="\e[33m"
 N="\e[0m"
 
 LOGS_FOLDER="/var/log/shellscript-logs"
+"/home/ec2-user/shell-scripting"
 LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
@@ -16,10 +17,10 @@ VALIDATE(){
 
     if [ $1 -ne 0 ]
     then 
-        echo "$2 ............$R Failed $N"
+        echo -e "$2 ............$R Failed $N"
         exit 1
     else
-        echo "$2 ............$G Success $N"
+        echo -e "$2 ............$G Success $N"
     fi
 }
 
@@ -38,7 +39,7 @@ then
     dnf install mysql &>>$LOG_FILE_NAME
     VALIDATE $? "Mysql install"
 else
-    echo "$Y Mysql is already ...........Installed $N"
+    echo -e "$Y Mysql is already ...........Installed $N"
 fi
 
 dnf list installed git &>>$LOG_FILE_NAME
@@ -48,5 +49,5 @@ then
     dnf install git &>>$LOG_FILE_NAME
     VALIDATE $? "Git install"
 else
-    echo "$$Y Git is already ...........Installed $N"
+    echo -e "$Y Git is already ...........Installed $N"
 fi
