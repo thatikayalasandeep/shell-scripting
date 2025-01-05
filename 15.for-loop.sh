@@ -37,15 +37,15 @@ echo "Script start executing at $TIMESTAMP" &>>$LOG_FILE_NAME
 
 CHECK_ROOT
 
-for PACKAGE in @
+for package in @
 do 
-    dnf list installed $PACKAGE &>>$LOG_FILE_NAME
+    dnf list installed $package &>>$LOG_FILE_NAME
 
     if [ $? -ne 0 ]
     then
-        dnf install $PACKAGE -y &>>$LOG_FILE_NAME
-        VALIDATE $? "$PACKAGE install"
+        dnf install $package -y &>>$LOG_FILE_NAME
+        VALIDATE $? "$package install"
     else
-        echo -e "$Y $PACKAGE is already ...........Installed $N"
+        echo -e "$Y $package is already ...........Installed $N"
     fi
 done
